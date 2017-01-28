@@ -16,6 +16,9 @@ A: Constraint propagation identifies naked twins, two boxes in a unit with a mat
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
 A: Constraint propagation solves the diagonal sudoku problem by including the diagonals within the list of units on the board. By including the diagonals with the rest of the units, the added constraints are included.
 
+### Solved Puzzle
+![solved](images/sudoku-board-complete.JPG)
+
 ### Install
 
 This project requires **Python 3**.
@@ -39,6 +42,8 @@ If not, please see how to download pygame [here](http://www.pygame.org/download.
 ### Visualizing
 
 To visualize your solution, please only assign values to the values_dict using the ```assign_values``` function provided in solution.py
+
+
 
 ### Data
 
