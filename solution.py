@@ -1,20 +1,6 @@
+from utils import *
+
 assignments = []
-
-def cross(A, B):
-    "Cross product of elements in A and elements in B."
-    return [ alpha+beta for alpha in A for beta in B ]
-
-rows = 'ABCDEFGHI'
-cols = '123456789'
-
-boxes = cross(rows, cols)
-row_units = [cross(r, cols) for r in rows]
-column_units = [cross(rows, c) for c in cols]
-square_units = [cross(rs, cs) for rs in ('ABC','DEF','GHI') for cs in ('123','456','789')]
-diagonal_units = [ [''.join(tup) for tup in list(zip(rows,cols))], [''.join(tup) for tup in list(zip(rows,cols[::-1]))] ]
-unitlist = row_units + column_units + square_units + diagonal_units
-units = dict((s, [u for u in unitlist if s in u]) for s in boxes)
-peers = dict((s, set(sum(units[s],[]))-set([s])) for s in boxes)
 
 def assign_value(values, box, value):
     """
@@ -48,9 +34,9 @@ def grid_values(grid):
 
 def naked_twins(values):
     """Eliminate values using the naked twins strategy.
+
     Args:
         values(dict): a dictionary of the form {'box_name': '123456789', ...}
-
     Returns:
         the values dictionary with the naked twins eliminated from peers.
     """
@@ -128,6 +114,14 @@ def only_choice(values):
     return new_values
 
 def reduce_puzzle(values):
+    """
+    Apply constraints iteratively until the puzzle is solved or stalled
+    Args:
+        values: Sudoku grid in dictionary form
+    Returns:
+        False: if a box has no possibilities
+        values: dictionary of values with constraints applied
+    """
     solved_values = [box for box in values.keys() if len(values[box]) == 1]
     stalled = False
     solved = False
@@ -153,7 +147,13 @@ def reduce_puzzle(values):
     return values
 
 def search(values):
-    "Using depth-first search and propagation, create a search tree and solve the sudoku."
+    """
+    Using depth-first search and propagation, create a search tree and solve the sudoku.
+    Args:
+        values: Sudoku in dictionary form.
+    Returns:
+        solved or reduced puzzle dictionary or False if unable to reduce
+    """
     # First, reduce the puzzle using the previous function
     values = reduce_puzzle(values)
     if values is False:

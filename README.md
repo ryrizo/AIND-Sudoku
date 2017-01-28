@@ -1,19 +1,26 @@
 # Artificial Intelligence Nanodegree
 ## Introductory Project: Diagonal Sudoku Solver
 
+# Vocab
+Unit: group of 9 boxes requiring values of 1-9
+Naked Twins: Two boxes in a unit with the same pair of possible values
+Peers: All boxes that share a unit for a given boxes
+
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+A: Constraint propagation identifies naked twins, two boxes in a unit with a matching pair of possibilities, and removes the pair of possibilities from all peers shared by the twins.
+* Identify naked twins in each unit
+* Remove the two possibilities for shared peers for every identified naked twin.
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+A: Constraint propagation solves the diagonal sudoku problem by including the diagonals within the list of units on the board. By including the diagonals with the rest of the units, the added constraints are included.
 
 ### Install
 
 This project requires **Python 3**.
 
-We recommend students install [Anaconda](https://www.continuum.io/downloads), a pre-packaged Python distribution that contains all of the necessary libraries and software for this project. 
+We recommend students install [Anaconda](https://www.continuum.io/downloads), a pre-packaged Python distribution that contains all of the necessary libraries and software for this project.
 Please try using the environment we provided in the Anaconda lesson of the Nanodegree.
 
 ##### Optional: Pygame
